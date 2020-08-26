@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timetracker/app/login/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,13 +9,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Time Tracker',
+      title: 'Fitness Tracker',
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: Container(
-        child: Text('Hello'),
-      ),
+      home: LoginPage(),
     );
   }
 }
