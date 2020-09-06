@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timetracker/app/home_page.dart';
 import 'package:timetracker/app/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -9,6 +10,16 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   FirebaseUser _user;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkUser();
+  }
+
+  Future<void> _checkUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+  }
 
   void _updateUser(FirebaseUser user) {
     setState(() {
@@ -23,6 +34,8 @@ class _LandingPageState extends State<LandingPage> {
         onLogin: _updateUser,
       );
     }
-    return Container();
+    return HomePage(
+      onLogout: () => _updateUser(null),
+    );
   }
 }
