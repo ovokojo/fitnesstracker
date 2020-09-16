@@ -15,6 +15,14 @@ class LoginPage extends StatelessWidget {
     }
   }
 
+  Future<void> _loginWithGoogle() async {
+    try {
+      await auth.loginWithGoogle();
+    } catch (e) {
+      print('${e.toString()}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +55,7 @@ class LoginPage extends StatelessWidget {
             text: 'Sign In With Google',
             color: Colors.white,
             assetName: 'images/google-logo.png',
-            onPressed: () {},
+            onPressed: _loginWithGoogle,
           ),
           SizedBox(height: 15),
           SocialLoginButton(
