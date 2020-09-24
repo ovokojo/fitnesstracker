@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timetracker/app/login/email_login.dart';
 import 'package:timetracker/app/login/login_button.dart';
 import 'package:timetracker/app/login/social_login_button.dart';
 import 'package:timetracker/services/auth.dart';
@@ -23,6 +24,15 @@ class LoginPage extends StatelessWidget {
     }
   }
 
+  void _loginWithEmail(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        fullscreenDialog: true,
+        builder: (_) => EmailLogin(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,12 +40,12 @@ class LoginPage extends StatelessWidget {
         title: Text('Fitness Tracker'),
         leading: Icon(Icons.fitness_center),
       ),
-      body: _displayButtons(),
+      body: _displayButtons(context),
       backgroundColor: Colors.amber[50],
     );
   }
 
-  Widget _displayButtons() {
+  Widget _displayButtons(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(32),
       child: Column(
@@ -70,7 +80,7 @@ class LoginPage extends StatelessWidget {
             text: 'Sign In with Email',
             color: Colors.teal[500],
             textColor: Colors.white,
-            onPressed: () {},
+            onPressed:() => _loginWithEmail(context),
           ),
           SizedBox(height: 20),
           Text(
